@@ -1,0 +1,8 @@
+#!/bin/bash
+# Original copyright Amazon.com, Inc.
+# Original SPDX-License-Identifier: MIT-0
+# Modified copyright Beginner Corp.
+# Modified SPDX-License-Identifier: Apache-2.0
+
+set -euo pipefail
+exec "/opt/begin-telemetry/index.js"

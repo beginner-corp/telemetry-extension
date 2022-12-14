@@ -1,0 +1,29 @@
+{
+  "name": "begin-telemetry-extension",
+  "version": "0.0.0",
+  "description": "Begin telemetry extension for Lambda + Node.js apps",
+  "homepage": "https://github.com/beginner-corp/telemetry-extension",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beginner-corp/telemetry-extension"
+  },
+  "bugs": "https://github.com/beginner-corp/telemetry-extension",
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "lint": "eslint --fix .",
+    "publish": "npm run build && ./scripts/publish-layer.js",
+    "test": "npm run lint"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "devDependencies": {
+    "@architect/eslint-config": "^2.0.1",
+    "@aws-sdk/client-lambda": "^3.226.0",
+    "@aws-sdk/client-ssm": "^3.224.0",
+    "eslint": "^8.29.0"
+  },
+  "eslintConfig": {
+    "extends": "@architect/eslint-config"
+  }
+}

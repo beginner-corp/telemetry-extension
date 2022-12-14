@@ -1,0 +1,6 @@
+{
+  "name": "begin-telemetry-extension",
+  "dependencies": {
+    "tiny-json-http": "^7.4.2"
+  }
+}
