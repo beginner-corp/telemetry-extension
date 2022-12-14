@@ -37,11 +37,11 @@ jobs:
         VER=`node --version`; echo "Node ver:   $VER"
         VER=`npm --version`; echo "npm ver:    $VER"
 
-    - name: Build
-      run: npm run build
-
     - name: Install
       run: npm install
+
+    - name: Build
+      run: npm run build
 
     - name: Test
       run: npm test
