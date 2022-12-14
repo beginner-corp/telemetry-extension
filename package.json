@@ -9,7 +9,7 @@
   },
   "bugs": "https://github.com/beginner-corp/telemetry-extension",
   "scripts": {
-    "build": "./scripts/build.sh",
+    "build": "cross-env ./scripts/build.sh",
     "lint": "eslint --fix .",
     "publish": "npm run build && ./scripts/publish-layer.js",
     "test": "npm run lint"
@@ -21,6 +21,7 @@
     "@architect/eslint-config": "^2.0.1",
     "@aws-sdk/client-lambda": "^3.226.0",
     "@aws-sdk/client-ssm": "^3.224.0",
+    "cross-env": "~7.0.3",
     "eslint": "^8.29.0"
   },
   "eslintConfig": {
