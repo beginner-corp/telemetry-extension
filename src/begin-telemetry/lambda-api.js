@@ -6,7 +6,7 @@ let extensionURL = `http://${AWS_LAMBDA_RUNTIME_API}/2020-01-01/extension`
 let telemetryURL = `http://${AWS_LAMBDA_RUNTIME_API}/2022-07-01/telemetry`
 let extHeader = 'lambda-extension-identifier'
 
-async function registerAndSubscribeExtension (listenerURL) {
+async function registerAndSubscribeExtension (listenerURL, config) {
   let res = await tiny.post({
     url: `${extensionURL}/register`,
     headers: { 'lambda-extension-name': basename(__dirname) },
@@ -14,6 +14,7 @@ async function registerAndSubscribeExtension (listenerURL) {
   })
   let extensionID = res.headers[extHeader]
 
+  let { telemetryTypes: types, telemetryTimeoutMs: timeoutMs } = config
   await tiny.put({
     url: telemetryURL,
     headers: { [extHeader]: extensionID },
@@ -23,9 +24,9 @@ async function registerAndSubscribeExtension (listenerURL) {
         protocol: 'HTTP',
         URI: listenerURL,
       },
-      types: [ 'platform', 'function' ],
+      types,
       // This needs to be as low as possible to ensure logs exfil during short executions
-      buffering: { timeoutMs: 25 },
+      buffering: { timeoutMs },
     },
   })
   log(`Extension subscribed to 'platform', 'function' events`)
