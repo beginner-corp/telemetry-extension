@@ -17,6 +17,7 @@ async function getRegions () {
     .map(({ Value }) => Value)
     .filter(r => !r.startsWith('cn-') && !r.startsWith('us-gov-'))
     .sort()
+    .reverse()
   if (!regions.length) throw Error('No regions found! Weird.')
 
   return regions
