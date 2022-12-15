@@ -23,7 +23,7 @@ try {
         Content: { ZipFile },
         LayerName,
         CompatibleRuntimes: [ 'nodejs12.x', 'nodejs14.x', 'nodejs16.x', 'nodejs18.x' ],
-        Description: 'Begin telemetry extension for Lambda + Node.js apps',
+        Description: 'Real-time Lambda telemetry, by Begin (begin.com)',
         LicenseInfo: 'Apache-2.0',
       })
       let layer = await lambda.send(publish)

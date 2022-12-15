@@ -23,9 +23,8 @@ async function getRegions () {
   return regions
 }
 
-let { BEGIN_STAGING, CUSTOM_NAME } = process.env
-let LayerName = BEGIN_STAGING ? 'begin-telemetry' : 'begin-telemetry-staging'
-if (CUSTOM_NAME) LayerName = CUSTOM_NAME
+let { LAYER_NAME } = process.env
+let LayerName = LAYER_NAME ? LAYER_NAME : 'begin-telemetry'
 
 module.exports = {
   getRegions,
