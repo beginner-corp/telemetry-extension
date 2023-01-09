@@ -12,7 +12,10 @@
     "build": "./scripts/build.sh",
     "lint": "eslint --fix .",
     "publish": "npm run build && ./scripts/publish-layer.js",
-    "test": "npm run lint"
+    "test": "npm run lint && npm run test:integration && npm run coverage",
+    "test:unit": "cross-env tape 'test/unit/**/*-test.js' | tap-spec",
+    "test:integration": "cross-env tape 'test/integration/**/*-test.js' | tap-spec",
+    "coverage": "nyc --reporter=lcov --reporter=text npm run test:unit"
   },
   "engines": {
     "node": ">=12"
@@ -21,7 +24,11 @@
     "@architect/eslint-config": "^2.0.1",
     "@aws-sdk/client-lambda": "^3.226.0",
     "@aws-sdk/client-ssm": "^3.224.0",
+    "cross-env": "~7.0.3",
     "eslint": "^8.29.0",
+    "nyc": "~15.1.0",
+    "tap-arc": "~0.3.5",
+    "tape": "~5.6.1",
     "tiny-json-http": "^7.4.2"
   },
   "eslintConfig": {
