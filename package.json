@@ -13,8 +13,8 @@
     "lint": "eslint --fix .",
     "publish": "npm run build && ./scripts/publish-layer.js",
     "test": "npm run lint && npm run test:integration && npm run coverage",
-    "test:unit": "cross-env tape 'test/unit/**/*-test.js' | tap-spec",
-    "test:integration": "cross-env tape 'test/integration/**/*-test.js' | tap-spec",
+    "test:unit": "cross-env tape 'test/unit/**/*-test.js' | tap-arc",
+    "test:integration": "cross-env tape 'test/integration/**/*-test.js' | tap-arc",
     "coverage": "nyc --reporter=lcov --reporter=text npm run test:unit"
   },
   "engines": {
