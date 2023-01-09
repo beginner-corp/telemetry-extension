@@ -3,6 +3,7 @@
 let { log, getConfig } = require('./lib')
 let { nextEvent, registerAndSubscribeExtension } = require('./lambda-api')
 let { eventListener, eventQueue } = require('./listener')
+let { randomUUID } = require('crypto')
 let tiny = require('tiny-json-http')
 let shutdown = () => process.exit(0)
 
@@ -37,6 +38,7 @@ try {
           url,
           body: {
             ...options,
+            batch: randomUUID(),
             telemetry,
           }
         })
