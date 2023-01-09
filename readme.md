@@ -43,9 +43,19 @@ process.env.TELEMETRY_CONFIG = JSON.stringify({
 
 ### Data shape
 
-The extension will publish to your configured URL as JSON with a Lambda telemetry events array called `telemetry`. Any other properties found in your `TELEMETRY_CONFIG` will be present at the top level of the published request.
+The extension will publish to your configured URL as JSON with a Lambda telemetry events array called `telemetry`. Any other properties found in your `TELEMETRY_CONFIG` will be present at the top level of the published request. This is useful for securing your telemetry API with secrets.
 
-For example, if your `TELEMETRY_CONFIG` was:
+Additionally, a top-level property named `batch` will be present with a UUID string; this represents the unique telemetry batch published by the extension so as to differentiate it from other telemetry data with the same timestamp.
+
+The `batch` property may be ignored if you prefer to try relying on the invocation ID that is usually (but not always) present in the raw telemetry data – hence the addition of the `batch` property.
+
+Because telemetry items may arrive with the same timestamp within a given invocation, the extension also provides each telemetry item with a zero-indexed property called `pos` denoting its sequence position within said timestamp.
+
+
+#### Example
+
+If your `TELEMETRY_CONFIG` was:
+
 ```json
 {
   "url": "https://foo.bar/telemetry-endpoint",
@@ -58,8 +68,15 @@ The following payload shape would be sent to the above endpoint with each interv
 ```json
 {
   "token": "fiz-buz",
+  "batch": String, // UUID
   "telemetry": [
-    ...events
+    {
+      "time": "2022-01-01T01:23:45.678Z",
+      "type": "function",
+      "record": "The actual telemetry body from Lambda",
+      "pos": 0 // Zero-indexed position of this record within a given unique Lambda invocation + timestamp
+    }
+    ...the rest of your events
   ]
 }
 ```
