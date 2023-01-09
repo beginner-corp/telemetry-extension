@@ -29,4 +29,23 @@ function getConfig () {
   }
 }
 
-module.exports = { log, getConfig }
+let timestamps = {}
+let tenMin = 60 * 1000 * 10
+function sequence (telemetry) {
+  let items = telemetry.map(item => {
+    let { time } = item
+    if (timestamps[time] === undefined) timestamps[time] = 0
+    else timestamps[time]++
+    item.pos = timestamps[time]
+    return item
+  })
+
+  // Tidy up timestamps in case the Lambda sees frequent re-use in high-traffic contexts
+  let now = Date.now()
+  Object.keys(timestamps).forEach(ts => {
+    if ((now - new Date(ts).getTime()) >= tenMin) delete timestamps[ts]
+  })
+  return items
+}
+
+module.exports = { getConfig, log, sequence }

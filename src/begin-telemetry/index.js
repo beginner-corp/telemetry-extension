@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-let { log, getConfig } = require('./lib')
+let { getConfig, log, sequence } = require('./lib')
 let { nextEvent, registerAndSubscribeExtension } = require('./lambda-api')
 let { eventListener, eventQueue } = require('./listener')
 let { randomUUID } = require('crypto')
@@ -33,6 +33,9 @@ try {
         // Deep copy the contents, then reset the queue
         let telemetry = JSON.parse(JSON.stringify(eventQueue))
         eventQueue.splice(0)
+
+        // Add sequencing
+        telemetry = sequence(telemetry)
 
         await tiny.post({
           url,
