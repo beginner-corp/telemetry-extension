@@ -1,6 +1,6 @@
 let debug
 let log = (...logs) => debug ? console.log('[Begin telemetry extension]', ...logs) : null
-let knownConfig = [ 'debug', 'url', 'telemetryTypes', 'telemetryTimeoutMs', 'telemetryListenerPort' ]
+let knownConfig = [ 'debug', 'url', 'rate', 'telemetryTypes', 'telemetryTimeoutMs', 'telemetryListenerPort' ]
 
 function getConfig () {
   try {
@@ -24,8 +24,8 @@ function getConfig () {
     return { config, options }
   }
   catch (err) {
-    console.error('Begin telemetry config error', err)
-    process.exit(1)
+    console.error('Begin telemetry config error')
+    throw err
   }
 }
 
