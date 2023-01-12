@@ -9,7 +9,7 @@ Stream Lambda telemetry to an arbitrary endpoint in real-time.
 
 | Region                          | ARN                                                            |
 |---------------------------------|----------------------------------------------------------------|
-| Any (except `us-gov-*`, `cn-*`) | `arn:aws:lambda:<region>:315848108193:layer:begin-telemetry:1` |
+| Any (except `us-gov-*`, `cn-*`) | `arn:aws:lambda:<region>:315848108193:layer:begin-telemetry:2` |
 
 After adding the extension ARN to your Lambda layers, be sure to [configure the extension's telemetry URL](#extension-configuration).
 
