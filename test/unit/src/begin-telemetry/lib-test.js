@@ -15,7 +15,7 @@ test('Set up env', t => {
 })
 
 test('getConfig', t => {
-  t.plan(14)
+  t.plan(15)
   let config, options
 
   try { getConfig() }
@@ -43,13 +43,15 @@ test('getConfig', t => {
   let telemetryTypes = [ 'function' ]
   let telemetryTimeoutMs = 1234
   let telemetryListenerPort = 3337
+  let ignore = [ 'platform.initStart' ]
   let rando = 'lol'
-  setConfig({ rate, telemetryTypes, telemetryTimeoutMs, telemetryListenerPort, rando })
+  setConfig({ rate, telemetryTypes, telemetryTimeoutMs, telemetryListenerPort, ignore, rando })
   ;({ config, options } = getConfig())
   t.equal(config.rate, rate, `Got back configured rate: ${rate}`)
   t.deepEqual(config.telemetryTypes, [ 'function' ], 'Got back configured telemetry types: function')
   t.equal(config.telemetryTimeoutMs, telemetryTimeoutMs, `Got back configured timeout: ${telemetryTimeoutMs}`)
   t.equal(config.telemetryListenerPort, telemetryListenerPort, `Got back configured port: ${telemetryListenerPort}`)
+  t.deepEqual(config.ignore, ignore, `Got back ignore types: ${ignore}`)
   t.equal(Object.keys(options).length, 1, 'Got back one option')
   t.equal(options.rando, rando, `Got arbitrary property in returned options: ${rando}`)
 

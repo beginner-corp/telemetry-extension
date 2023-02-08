@@ -13,6 +13,7 @@ process.env.AWS_LAMBDA_RUNTIME_API = `${host}:${port}`
 let { AWS_LAMBDA_RUNTIME_API } = process.env
 let telemetryEndpoint = '/telemetry'
 let url = `http://${AWS_LAMBDA_RUNTIME_API}${telemetryEndpoint}`
+let ignore = [ 'platform.initStart' ]
 
 let server, child, body = []
 let extNameHeader = 'lambda-extension-name'
@@ -83,6 +84,11 @@ test('Run telemetry plugin', t => {
         t.ok(body.batch, 'Telemetry plugin passed batch ID')
         t.equal(body.arbitraryData, arbitraryData, 'Telemetry plugin passed arbitrary property from config')
         let expected = telemetryData[batch - 1]
+
+        // On the third batch we're testing to see that the ignore configuration worked, so slice off the last one for good measure
+        if (batch - 1 === 2) {
+          expected = expected.slice(0, 3)
+        }
         t.equal(body.telemetry.length, expected.length, `Got back ${expected.length} telemetry items`)
 
         // Check the actual data
@@ -105,7 +111,7 @@ test('Run telemetry plugin', t => {
     else t.ok(`Started mock Lambda extension / telemetry API on port ${port}`)
   })
 
-  let TELEMETRY_CONFIG = JSON.stringify({ url, arbitraryData, debug: true })
+  let TELEMETRY_CONFIG = JSON.stringify({ url, ignore, arbitraryData, debug: true })
   child = spawn(sut, {
     shell: true,
     env: { ...process.env, TELEMETRY_CONFIG }
@@ -166,6 +172,11 @@ let telemetryData = [
       time: '2022-01-01T01:23:45.678Z',
       type: 'function',
       record: '3 - 3/3',
+    },
+    {
+      time: '2022-01-00T01:23:45.678Z',
+      type: 'platform.initStart',
+      record: { initializationType: 'on-demand', phase: 'init' },
     },
   ],
 ]

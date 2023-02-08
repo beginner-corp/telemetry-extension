@@ -1,6 +1,6 @@
 let debug
 let log = (...logs) => debug ? console.log('[Begin telemetry extension]', ...logs) : null
-let knownConfig = [ 'debug', 'url', 'rate', 'telemetryTypes', 'telemetryTimeoutMs', 'telemetryListenerPort' ]
+let knownConfig = [ 'debug', 'url', 'rate', 'telemetryTypes', 'telemetryTimeoutMs', 'telemetryListenerPort', 'ignore' ]
 
 function getConfig () {
   try {
@@ -16,6 +16,7 @@ function getConfig () {
     config.telemetryTypes = config.telemetryTypes || [ 'platform', 'function' ]
     config.telemetryTimeoutMs = config.telemetryTimeoutMs || 25
     config.telemetryListenerPort = config.telemetryListenerPort || 4243
+    config.ignore = config.ignore || []
 
     // Arbitrary options to pass to the telemetry API
     let options = JSON.parse(TELEMETRY_CONFIG)
