@@ -3,7 +3,8 @@ let host = process.env.AWS_LAMBDA_FUNCTION_NAME ? 'sandbox.localdomain' : 'local
 let eventQueue = []
 
 function eventListener (config) {
-  let { telemetryListenerPort: port } = config
+  let { ignore, telemetryListenerPort: port } = config
+  let checkIgnored = ({ type }) => !ignore.includes(type)
   let server = http.createServer()
   server.on('request', (req, res) => {
     let raw = []
@@ -11,7 +12,10 @@ function eventListener (config) {
     req.on('end', () => {
       if (raw.length) {
         let body = JSON.parse(Buffer.concat(raw))
-        if (body.length) eventQueue.push(...body)
+        if (body.length) {
+          let items = ignore.length ? body.filter(checkIgnored) : body
+          eventQueue.push(...items)
+        }
       }
       res.statusCode = 200
       res.end()

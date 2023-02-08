@@ -36,6 +36,7 @@ process.env.TELEMETRY_CONFIG = JSON.stringify({
   telemetryTypes: Array,          // Default: [ 'platform', 'function' ]
   telemetryTimeoutMs: Number,     // Default: 25,
   telemetryListenerPort: Number,  // Default: 4243,
+  ignore: Array,                  // Default (disabled); array of event types to skip transmitting, e.g. 'platform.telemetrySubscription'
   // Any additional properties in the config object will be passed to the telemetry URL
 })
 ```
