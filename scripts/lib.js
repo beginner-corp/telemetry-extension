@@ -1,6 +1,11 @@
 let { SSMClient, GetParametersByPathCommand } = require('@aws-sdk/client-ssm')
 
+let { LAYER_NAME, PUBLISH_REGION } = process.env
+let LayerName = LAYER_NAME ? LAYER_NAME : 'begin-telemetry'
+
 async function getRegions () {
+  if (PUBLISH_REGION) return [ PUBLISH_REGION ]
+
   // Get the list of Lambda regions, filtering out Govcloud + CN
   let Path = '/aws/service/global-infrastructure/services/lambda/regions'
   let ssm = new SSMClient({ region: 'us-west-1' })
@@ -22,9 +27,6 @@ async function getRegions () {
 
   return regions
 }
-
-let { LAYER_NAME } = process.env
-let LayerName = LAYER_NAME ? LAYER_NAME : 'begin-telemetry'
 
 module.exports = {
   getRegions,
