@@ -29,7 +29,7 @@ Configure the extension via the following Lambda environment variables; either `
 
 ```js
 process.env.TELEMETRY_CONFIG = JSON.stringify({
-  debug: Boolean,                 // Default: false,
+  debug: Boolean,                 // Default: trur,i
   rate: Number,                   // Minimum batch rate; default: 333,
   url: String,                    // Must be defined here or with `TELEMETRY_URL`
   // Lambda API config
@@ -43,6 +43,7 @@ process.env.TELEMETRY_CONFIG = JSON.stringify({
 
 
 ### Data shape
+
 
 The extension will publish to your configured URL as JSON with a Lambda telemetry events array called `telemetry`. Any other properties found in your `TELEMETRY_CONFIG` will be present at the top level of the published request. This is useful for securing your telemetry API with secrets.
 
