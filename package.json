@@ -2,6 +2,7 @@
   "name": "begin-telemetry-extension",
   "version": "0.2.0",
   "description": "Begin telemetry extension for Lambda + Node.js apps",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/beginner-corp/telemetry-extension",
   "repository": {
     "type": "git",
