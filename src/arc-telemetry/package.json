@@ -1,6 +1,6 @@
 {
   "name": "arc-telemetry-extension",
   "dependencies": {
-    "tiny-json-http": "^7.4.2"
+    "tiny-json-http": "^7.5.1"
   }
 }
