@@ -8,6 +8,7 @@ let {
   AddLayerVersionPermissionCommand,
   PublishLayerVersionCommand,
 } = require('@aws-sdk/client-lambda')
+let currentRegion
 
 try {
   async function main () {
@@ -18,6 +19,7 @@ try {
     // Publish to each region
     let regions = await getRegions()
     for (let region of regions) {
+      currentRegion = region
       let lambda = new LambdaClient({ region })
       let publish = new PublishLayerVersionCommand({
         Content: { ZipFile },
@@ -43,6 +45,9 @@ try {
   main()
 }
 catch (err) {
+  if (currentRegion) {
+    console.error(`Publishing failed on ${currentRegion}`)
+  }
   console.error(err)
   process.exit(1)
 }
