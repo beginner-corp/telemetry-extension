@@ -22,7 +22,7 @@ try {
       let publish = new PublishLayerVersionCommand({
         Content: { ZipFile },
         LayerName,
-        CompatibleRuntimes: [ 'nodejs12.x', 'nodejs14.x', 'nodejs16.x', 'nodejs18.x' ],
+        CompatibleRuntimes: [ 'nodejs18.x', 'nodejs20.x', 'nodejs22.x' ],
         Description: 'Real-time Lambda telemetry, by Architect (arc.codes)',
         LicenseInfo: 'Apache-2.0',
       })
