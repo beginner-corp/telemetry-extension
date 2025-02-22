@@ -65,7 +65,7 @@ test('Run telemetry plugin', t => {
           schemaVersion: '2022-07-01',
           destination: { protocol: 'HTTP', URI: listener },
           types: [ 'platform', 'function' ],
-          buffering: { timeoutMs: 25 }
+          buffering: { timeoutMs: 25 },
         }, 'Registered telemetry with correct options')
       }
 
@@ -114,7 +114,7 @@ test('Run telemetry plugin', t => {
   let TELEMETRY_CONFIG = JSON.stringify({ url, ignore, arbitraryData, debug: true })
   child = spawn(sut, {
     shell: true,
-    env: { ...process.env, TELEMETRY_CONFIG }
+    env: { ...process.env, TELEMETRY_CONFIG },
   })
   let print = chunk => console.log(chunk.toString())
   child.stdout.on('data', print)
@@ -142,7 +142,7 @@ let telemetryData = [
       time: '2022-01-01T01:23:45.678Z',
       type: 'function',
       record: '1 - 1/1',
-    }
+    },
   ],
   [
     // Diff days, so both pos 0

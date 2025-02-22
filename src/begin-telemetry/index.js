@@ -43,7 +43,7 @@ try {
             ...options,
             batch: randomUUID(),
             telemetry,
-          }
+          },
         })
 
         // Freeze telemetry until the Lambda's next invocation or container shutdown

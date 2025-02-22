@@ -6,7 +6,7 @@ let { getRegions, LayerName } = require('./lib')
 let {
   LambdaClient,
   AddLayerVersionPermissionCommand,
-  PublishLayerVersionCommand
+  PublishLayerVersionCommand,
 } = require('@aws-sdk/client-lambda')
 
 try {
