@@ -9,7 +9,7 @@ Stream Lambda telemetry to an arbitrary endpoint in real-time.
 
 | Region                          | ARN                                                            |
 |---------------------------------|----------------------------------------------------------------|
-| Any (except `us-gov-*`, `cn-*`) | `arn:aws:lambda:<region>:315848108193:layer:arc-telemetry:2` |
+| Any (except `us-gov-*`, `cn-*`) | `arn:aws:lambda:<region>:315848108193:layer:arc-telemetry:1` |
 
 After adding the extension ARN to your Lambda layers, be sure to [configure the extension's telemetry URL](#extension-configuration).
 
@@ -77,7 +77,7 @@ The following payload shape would be sent to the above endpoint with each interv
       "record": "The actual telemetry body from Lambda",
       "pos": 0 // Zero-indexed position of this record within a given unique Lambda invocation + timestamp
     }
-    ...the rest of your events
+    // ...the rest of your events
   ]
 }
 ```
