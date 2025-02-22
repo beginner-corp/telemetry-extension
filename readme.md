@@ -1,6 +1,6 @@
-# Begin real-time Lambda telemetry extension
+# Architect real-time Lambda telemetry extension
 
-[![GitHub CI status](https://github.com/beginner-corp/telemetry-extension/workflows/Node%20CI/badge.svg)](https://github.com/beginner-corp/telemetry-extension/actions?query=workflow%3A%22Node+CI%22)
+[![GitHub CI status](https://github.com/architect/telemetry-extension/workflows/Node%20CI/badge.svg)](https://github.com/architect/telemetry-extension/actions?query=workflow%3A%22Node+CI%22)
 
 Stream Lambda telemetry to an arbitrary endpoint in real-time.
 
@@ -9,11 +9,11 @@ Stream Lambda telemetry to an arbitrary endpoint in real-time.
 
 | Region                          | ARN                                                            |
 |---------------------------------|----------------------------------------------------------------|
-| Any (except `us-gov-*`, `cn-*`) | `arn:aws:lambda:<region>:315848108193:layer:begin-telemetry:2` |
+| Any (except `us-gov-*`, `cn-*`) | `arn:aws:lambda:<region>:315848108193:layer:arc-telemetry:2` |
 
 After adding the extension ARN to your Lambda layers, be sure to [configure the extension's telemetry URL](#extension-configuration).
 
-> Note: this extension is currently only compatible with Node.js Lambda runtimes. You can also test the `staging` version of the extension by changing the above layer name to `begin-telemetry-staging` (and using the latest version number).
+> Note: this extension is currently only compatible with Node.js Lambda runtimes. You can also test the `staging` version of the extension by changing the above layer name to `arc-telemetry-staging` (and using the latest version number).
 
 
 ## Extension configuration
@@ -85,4 +85,4 @@ The following payload shape would be sent to the above endpoint with each interv
 
 ## Deployment options
 
-If you would like to deploy this extension to your own Lambda layer collection (instead of using the publicly published version above), you can customize the extension name by setting the `LAYER_NAME` env var (which defaults to `begin-telemetry`) when running `npm run publish`.
+If you would like to deploy this extension to your own Lambda layer collection (instead of using the publicly published version above), you can customize the extension name by setting the `LAYER_NAME` env var (which defaults to `arc-telemetry`) when running `npm run publish`.

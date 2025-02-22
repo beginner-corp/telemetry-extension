@@ -74,7 +74,7 @@ jobs:
         run: npm run publish
         env:
           CI: true
-          LAYER_NAME: begin-telemetry-staging
+          LAYER_NAME: arc-telemetry-staging
           AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
 

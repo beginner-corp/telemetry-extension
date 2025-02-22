@@ -1,7 +1,7 @@
 let { join } = require('path')
 let test = require('tape')
 let cwd = process.cwd()
-let sut = join(cwd, 'src', 'begin-telemetry', 'lib.js')
+let sut = join(cwd, 'src', 'arc-telemetry', 'lib.js')
 let lib = require(sut)
 let { getConfig, log, sequence } = lib
 

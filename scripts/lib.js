@@ -1,7 +1,7 @@
 let { SSMClient, GetParametersByPathCommand } = require('@aws-sdk/client-ssm')
 
 let { LAYER_NAME, PUBLISH_REGION } = process.env
-let LayerName = LAYER_NAME ? LAYER_NAME : 'begin-telemetry'
+let LayerName = LAYER_NAME ? LAYER_NAME : 'arc-telemetry'
 
 async function getRegions () {
   if (PUBLISH_REGION) return [ PUBLISH_REGION ]

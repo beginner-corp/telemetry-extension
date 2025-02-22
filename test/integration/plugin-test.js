@@ -4,7 +4,7 @@ let test = require('tape')
 let tiny = require('tiny-json-http')
 let cwd = process.cwd()
 let { spawn, spawnSync } = require('child_process')
-let sut = join(cwd, 'src', 'begin-telemetry', 'index.js')
+let sut = join(cwd, 'src', 'arc-telemetry', 'index.js')
 
 let listener = 'http://localhost:4243'
 let port = 50000
@@ -53,7 +53,7 @@ test('Run telemetry plugin', t => {
       // Lambda extension API registration mock
       if (isReg) {
         responseHeaders = { [extIDHeader]: extID }
-        t.equal(req.headers[extNameHeader], 'begin-telemetry', 'Registered begin-telemetry plugin')
+        t.equal(req.headers[extNameHeader], 'arc-telemetry', 'Registered arc-telemetry plugin')
         t.deepEqual(body, { events: [ 'INVOKE', 'SHUTDOWN' ] }, 'Registered invoke, shutdown events')
       }
 

@@ -1,4 +1,4 @@
-cd src/begin-telemetry
+cd src/arc-telemetry
 npm i
 cd ../..
 mkdir -p build

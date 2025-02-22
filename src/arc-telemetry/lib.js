@@ -1,5 +1,5 @@
 let debug
-let log = (...logs) => debug ? console.log('[Begin telemetry extension]', ...logs) : null
+let log = (...logs) => debug ? console.log('[Arc telemetry extension]', ...logs) : null
 let knownConfig = [ 'debug', 'url', 'rate', 'telemetryTypes', 'telemetryTimeoutMs', 'telemetryListenerPort', 'ignore' ]
 
 function getConfig () {
@@ -25,7 +25,7 @@ function getConfig () {
     return { config, options }
   }
   catch (err) {
-    console.error('Begin telemetry config error')
+    console.error('Arc telemetry config error')
     throw err
   }
 }

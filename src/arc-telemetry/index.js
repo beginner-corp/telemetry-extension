@@ -72,5 +72,5 @@ try {
   main()
 }
 catch (err) {
-  console.log('Begin telemetry extension error', err)
+  console.log('Arc telemetry extension error', err)
 }
