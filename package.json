@@ -1,14 +1,14 @@
 {
-  "name": "begin-telemetry-extension",
+  "name": "arc-telemetry-extension",
   "version": "0.2.0",
-  "description": "Begin telemetry extension for Lambda + Node.js apps",
+  "description": "Architect telemetry extension for Lambda + Node.js apps",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/beginner-corp/telemetry-extension",
+  "homepage": "https://github.com/architect/telemetry-extension",
   "repository": {
     "type": "git",
-    "url": "https://github.com/beginner-corp/telemetry-extension"
+    "url": "https://github.com/architect/telemetry-extension"
   },
-  "bugs": "https://github.com/beginner-corp/telemetry-extension",
+  "bugs": "https://github.com/architect/telemetry-extension",
   "scripts": {
     "build": "./scripts/build.sh",
     "lint": "eslint --fix .",
